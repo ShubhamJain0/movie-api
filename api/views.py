@@ -7,7 +7,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Movie, Rating
-from .serializers import MovieSerializer, RatingSerializer, UserSerializer, MovieDetailSerializer
+from .serializers import MovieSerializer, RatingSerializer, UserSerializer
 # Create your views here.
 
 
@@ -45,15 +45,6 @@ class MovieViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = Movie.objects.all()
 	serializer_class = MovieSerializer
 	authentication_classes = (TokenAuthentication, )
-
-
-
-	def get_serializer_class(self):
-		"""Returns appropriate serializer class"""
-		if self.action == 'retrieve':
-			return MovieDetailSerializer
-
-		return self.serializer_class
 
 
 
